@@ -47,4 +47,7 @@ jobs:
           az containerapp update --name reactcontainer13-app \
             --resource-group ReactRG \
             --image ${{ secrets.REGISTRY_URL }}/reactappimg:${{ env.COMMIT_SHA }}
+        
+      - name: print for deploy
+        run: echo "${{ env.COMMIT_SHA }}"
             
