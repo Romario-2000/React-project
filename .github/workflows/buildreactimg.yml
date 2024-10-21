@@ -40,13 +40,21 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.REGISTRY_URL }}/reactappimg:${{ env.COMMIT_SHA }} .
+      - name: print for build
+        run: echo "${{ env.COMMIT_SHA }}"
 
       - name: Push Docker image to ACR
         run: |
           docker push ${{ secrets.REGISTRY_URL }}/reactappimg:${{ env.COMMIT_SHA }}
+          
+      - name: print for push
+        run: echo "${{ env.COMMIT_SHA }}"
 
       - name: Deploy to Azure Container App
         run: |
           az containerapp update --name reactcontainer13-app \
             --resource-group ReactRG \
             --image ${{ secrets.REGISTRY_URL }}/reactappimg:${{ env.COMMIT_SHA }}
+            
+      - name: print for deploy
+        run: echo "${{ env.COMMIT_SHA }}"
