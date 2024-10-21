@@ -48,6 +48,4 @@ jobs:
             --resource-group ReactRG \
             --image ${{ secrets.REGISTRY_URL }}/reactappimg:${{ env.COMMIT_SHA }}
         
-      - name: print for deploy
-        run: echo "${{ env.COMMIT_SHA }}"
-            
+                 
